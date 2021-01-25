@@ -90,31 +90,3 @@
       </tr>
     </tbody>
   </table>
-
-  ## Issue
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>id</td>
-        <td>UUID</td>
-        <td>Automatically generated, immutable, unique identifier.</td>
-      </tr>
-      <tr>
-        <td>attraction id</td>
-        <td>UUID</td>
-        <td>Attraction that this queue belongs to</td>
-      </tr>
-      <tr>
-        <td>comment</td>
-        <td>text</td>
-        <td>The message that is posted as an issue</td>
-      </tr>
-    </tbody>
-  </table>
