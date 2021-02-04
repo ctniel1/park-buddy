@@ -1,0 +1,470 @@
+openapi: 3.0.0
+info:
+  description: |
+    This is the server for the Park Buddy App created by Chris Nielson.
+  version: "1.0.0"
+  title: Park Buddy
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: ctniel1@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/Chris-AWT/ParkBuddy/1.0.0
+  - url: 'https://petstore.swagger.io/v2'
+tags:
+  - name: attraction
+    description: Everything about your Attractions
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+  - name: queue
+    description: Access to Queues
+  - name: user
+    description: Operations about user
+    externalDocs:
+      description: Find out more about your park
+      url: 'http://swagger.io'
+paths:
+  /attraction:
+    post:
+      tags:
+        - attraction
+      summary: Add a new attraction to the park
+      operationId: addAttraction
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - parkbuddy_auth:
+            - 'write:attractions'
+            - 'read:attractions'
+      requestBody:
+        $ref: '#/components/requestBodies/Attraction'
+    get:
+      tags:
+        - attraction
+      summary: Get all attractions
+      operationId: getAttractions
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Attraction not found
+        '405':
+          description: Validation exception
+  '/attraction/{attractionId}':
+    get:
+      tags:
+        - attraction
+      summary: Find attraction by ID
+      description: Returns a single attraction
+      operationId: getAttractionById
+      parameters:
+        - name: attractionId
+          in: path
+          description: ID of attraction to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attraction'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Attraction'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Attraction not found
+    post:
+      tags:
+        - attraction
+      summary: Updates an attraction in the park
+      operationId: updateAttraction
+      parameters:
+        - name: attractionId
+          in: path
+          description: ID of attraction that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - parkbuddy_auth:
+            - 'write:attractions'
+            - 'read:attractions'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Updated name of the attraction
+                  type: string
+                description:
+                  description: Updated description of the attraction
+                  type: string
+                rating:
+                  description: Updated rating of the attraction
+                  type: number
+                totalRatings:
+                  description: Updated total ratings of the attraction
+                  type: integer
+    delete:
+      tags:
+        - attraction
+      summary: Deletes an attraction
+      operationId: deleteAttraction
+      parameters:
+        - name: api_key
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: attractionId
+          in: path
+          description: Attraction id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Attraction not found
+      security:
+        - parkbuddy_auth:
+            - 'write:attractions'
+            - 'read:attractions'
+  /queue:
+    post:
+      tags:
+        - queue
+      summary: Creates a queue in the park
+      operationId: createQueue
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - parkbuddy_auth:
+            - 'write:queues'
+            - 'read:queues'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                attractionId:
+                  description: Id of associated attraction
+                  type: string
+                rate:
+                  description: Rate of the queue
+                  type: number
+                totalQueued:
+                  description: Total number of people currently queued
+                  type: integer
+                status:
+                  description: Current status of the queue
+                  type: string
+  '/queue/{queueId}':
+    get:
+      tags:
+        - queue
+      summary: Find queue by ID
+      operationId: getQueueById
+      parameters:
+        - name: queueId
+          in: path
+          description: ID of the queue that needs to be fetched
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Queue'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Queue'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Queue not found
+      security:
+        - parkbuddy_auth:
+            - 'write:queue'
+            - 'read:queue'
+    post:
+      tags:
+        - queue
+      summary: Updates a queue in the park
+      operationId: updateQueue
+      parameters:
+        - name: queueId
+          in: path
+          description: ID of the queue that needs to be fetched
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - parkbuddy_auth:
+            - 'write:queues'
+            - 'read:queues'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                attractionId:
+                  description: Id of associated attraction
+                  type: string
+                rate:
+                  description: Rate of the queue
+                  type: number
+                totalQueued:
+                  description: Total number of people currently queued
+                  type: integer
+                status:
+                  description: Current status of the queue
+                  type: string
+    delete:
+      tags:
+        - queue
+      summary: Delete queue by ID
+      operationId: deleteQueue
+      parameters:
+        - name: queueId
+          in: path
+          description: ID of the queue that needs to be deleted
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Queue not found
+      security:
+        - parkbuddy_auth:
+            - 'write:queue'
+            - 'read:queue'
+  /user:
+    post:
+      tags:
+        - user
+      summary: Create user
+      description: This can only be done by the logged in user.
+      operationId: createUser
+      responses:
+        default:
+          description: successful operation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Created user object
+        required: true
+  '/user/{username}':
+    get:
+      tags:
+        - user
+      summary: Get user by user name
+      operationId: getUserByName
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be fetched. Use user1 for testing.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+    put:
+      tags:
+        - user
+      summary: Updated user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: username
+          in: path
+          description: name that need to be updated
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid user supplied
+        '404':
+          description: User not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Updated user object
+        required: true
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+components:
+  schemas:
+    Queue:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        attractionId:
+          type: string
+          format: uuid
+        rate:
+          type: number
+          format: float
+        totalQueued:
+          type: integer
+          format: int64
+        status:
+          type: string
+          description: Queue Status
+          enum:
+            - enabled
+            - disabled
+      xml:
+        name: Queue
+    User:
+      type: object
+      required:
+        - username
+        - password
+        - email
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phone:
+          type: string
+      xml:
+        name: User
+    Attraction:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: Wicked
+        description:
+          type: string
+        rating:
+          type: number
+          format: float
+        totalRatings:
+          type: integer
+          format: int64
+      xml:
+        name: Attraction
+  requestBodies:
+    Attraction:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Attraction'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Attraction'
+      description: Attraction object that needs to be added to the park
+      required: true
+    UserArray:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+      description: List of user object
+      required: true
+  securitySchemes:
+    parkbuddy_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+          scopes:
+            'write:attractions': modify attractions in your account
+            'read:attractions': read your attractions
+            'write:queues': modify queues in your account
+            'read:queues': read your queues
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
