@@ -12,9 +12,9 @@ router.put('/', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  res.send('user put, will update an account')
+  res.send('user put, will update the account with id ' + req.body.id)
 })
 
 router.delete('/:id', (req, res) => {
-  res.send('user delete, will delete an account')
+  res.send('user delete, will delete the account with id ' + req.body.id)
 })

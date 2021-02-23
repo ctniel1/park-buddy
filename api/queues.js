@@ -12,13 +12,13 @@ router.put('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  res.send('queue get, will get a queue')
+  res.send('queue get, will get the queue with id ' + req.params.id)
 })
 
 router.put('/:id', (req, res) => {
-  res.send('queue put, will update a queue')
+  res.send('queue put, will update the queue with id ' + req.body.id)
 })
 
 router.delete('/:id', (req, res) => {
-  res.send('queue delete, will delete a queue')
+  res.send('queue delete, will delete the queue with id ' + req.body.id)
 })

@@ -12,13 +12,13 @@ router.put('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  res.send('attraction get, will get an attraction')
+  res.send('attraction get, will get the attraction with id ' + req.params.id)
 })
 
 router.put('/:id', (req, res) => {
-  res.send('attraction put, will update an attraction')
+  res.send('attraction put, will update the attraction with id ' + req.body.id)
 })
 
 router.delete('/:id', (req, res) => {
-  res.send('attraction delete, will delete an attraction')
+  res.send('attraction delete, will delete the attraction with id ' + req.body.id)
 })
