@@ -209,10 +209,6 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Queue not found
-      security:
-        - parkbuddy_auth:
-            - 'write:queue'
-            - 'read:queue'
     post:
       tags:
         - queue
@@ -269,10 +265,6 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Queue not found
-      security:
-        - parkbuddy_auth:
-            - 'write:queue'
-            - 'read:queue'
   /user:
     post:
       tags:

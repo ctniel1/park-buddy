@@ -1,0 +1,43 @@
+version: '3.1'
+
+services:
+
+  # adminer instance
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  # mysql database instance
+  dbMysql:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: park_buddy_db
+      
+  # web server
+  web:
+    # build an image using the Dockerfile in the current directory
+    build:
+      context: .
+
+    # map external port 8000 to internal port 3000
+    ports:
+      - 8000:3000
+
+    # creating a volume mount is nice for development
+    volumes:
+      - ./server:/root/server
+      - ./node_modules:/root/node_modules
+
+    # give the location for the environment file
+    # env_file:
+    #   - ./.env
+
+    # tell this container not to start until the mongo container starts
+    depends_on:
+    - dbMysql
