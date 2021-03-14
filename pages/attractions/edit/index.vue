@@ -1,13 +1,12 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
       <h1 class="title">
-        todo
+        Attraction Edit page
       </h1>
       <div class="links">
-        <nuxt-link to='./attractions/0'>Attraction 0</nuxt-link>
-        <nuxt-link to='./queues/0'>Queue 0</nuxt-link>
+        <nuxt-link to='/'>Home</nuxt-link>
+        <nuxt-link to='../attractions/0'>Attraction 0</nuxt-link>
       </div>
     </div>
   </div>
