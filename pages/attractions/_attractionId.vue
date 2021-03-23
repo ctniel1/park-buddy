@@ -4,7 +4,6 @@
       <h1 class="title">
         Attraction Page <!--#{{this.$route.params.attractionId}}-->
       </h1>
-      <Attraction v-bind:attractionId="this.$route.params.attractionId" />
       <div class="links">
         <nuxt-link to='../'>Home</nuxt-link>
         <nuxt-link to='./edit'>Edit Attraction</nuxt-link>

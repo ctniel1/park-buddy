@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>I'm a component!</h1>
-    <p>Attraction Id {{ attractionId }}</p>
+    <h1>{{ attraction.name }}</h1>
+    <p>{{ attraction.description }}</p>
+    <nuxt-link :to="'attractions/' + attraction.id">Check it out</nuxt-link>
   </div>
 </template>
 
@@ -9,7 +10,7 @@
   export default {
     name: 'Attraction',
     props: {
-      attractionId: Number
+      attraction: Object
     }
   }
 </script>

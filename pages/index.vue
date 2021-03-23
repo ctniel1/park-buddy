@@ -1,13 +1,15 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
       <h1 class="title">
-        todo
+        Park Buddy
       </h1>
       <div class="links">
-        <nuxt-link to='./attractions/0'>Attraction 0</nuxt-link>
-        <nuxt-link to='./queues/0'>Queue 0</nuxt-link>
+        <nuxt-link to='./attractions'>Attractions</nuxt-link>
+        <nuxt-link to='./queues'>My Queues</nuxt-link>
+        <nuxt-link to='./concessions'>Concessions</nuxt-link>
+        <nuxt-link to='./map'>Map</nuxt-link>
+        <nuxt-link to='./todos'>Todos</nuxt-link>
       </div>
     </div>
   </div>
