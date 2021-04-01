@@ -9,7 +9,7 @@
         <nuxt-link to='./queues'>My Queues</nuxt-link>
         <nuxt-link to='./concessions'>Concessions</nuxt-link>
         <nuxt-link to='./map'>Map</nuxt-link>
-        <nuxt-link to='./todos'>Todos</nuxt-link>
+        <nuxt-link to='./admin'>Admin</nuxt-link>
       </div>
     </div>
   </div>
@@ -18,7 +18,11 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+   mounted () {
+        this.$store.dispatch('attractions/getAttractions')
+    },
+})
 </script>
 
 <style>

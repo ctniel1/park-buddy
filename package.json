@@ -12,11 +12,13 @@
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.1",
     "@nuxtjs/axios": "^5.12.5",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "bufferutil": "^4.0.3",
     "canvas": "^2.7.0",
     "cookie-parser": "^1.4.5",
     "core-js": "^3.8.3",
+    "cors": "^2.8.5",
     "element-ui": "^2.15.0",
     "express-session": "^1.17.1",
     "mysql2": "^2.2.5",
@@ -28,7 +30,8 @@
     "passport-local": "^1.0.0",
     "sass": "^1.32.8",
     "utf-8-validate": "^5.0.4",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.0",

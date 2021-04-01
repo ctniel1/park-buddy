@@ -2,14 +2,11 @@
   <div class="container">
     <div>
       <h1 class="title">
-        Attraction Page <!--#{{this.$route.params.attractionId}}-->
+        Park Management Page
       </h1>
-      <p>
-        {{attractions.attraction[0]}}
-      </p>
       <div class="links">
-        <nuxt-link to='../'>Home</nuxt-link>
-        <nuxt-link to='./edit'>Edit Attraction</nuxt-link>
+        <nuxt-link to='/'>Back to Home</nuxt-link>
+        <nuxt-link to='./attractions/add'>Add Attraction</nuxt-link>
       </div>
     </div>
   </div>
@@ -17,28 +14,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapActions, mapState } from 'vuex'
 
-export default Vue.extend({
-  name: 'app',
-  
-  mounted () {
-        this.$store.dispatch('attractions/getAttraction', this.$route.params.attractionId)
-    },
-  computed: mapState([
-    'attractions'
-  ]),
-  data () {
-    return {
-
-      }
-    },
-  methods: {
-    ...mapActions({
-      loadAttractions: 'loadAttractions' // map `this.add() to `this.$store.dispatch('add')`
-    })
-  }
-})
+export default Vue.extend({})
 </script>
 
 <style>

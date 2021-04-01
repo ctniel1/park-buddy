@@ -4,9 +4,19 @@ const LocalStrategy = require('passport-local').Strategy
 const passport = require('passport')
 const session = require('express-session')
 const api = require('./api')
+const cors = require('cors')
+const { default: bodyParser } = require('body-parser')
 
 const app = express()
 const port = 3000
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3000")
+//   res.header("Access-Control-Allow-Methods", "GET,POST,PUT")
+//   next()
+// })
+
+app.use(cors())
 
 passport.use(new LocalStrategy(function(username, password, done) {
   console.log('In local strategy')
@@ -23,6 +33,7 @@ passport.deserializeUser(function(id, done) {
 })
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
 app.use(session({ secret: 'secret key', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());

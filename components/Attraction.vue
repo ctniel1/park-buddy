@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ attraction.name }}</h1>
-    <p>{{ attraction.description }}</p>
+    <p>{{ attraction.type }} - Min. Height: {{ attraction.minHeight}} in.</p>
     <nuxt-link :to="'attractions/' + attraction.id">Check it out</nuxt-link>
   </div>
 </template>
