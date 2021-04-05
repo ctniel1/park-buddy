@@ -3,10 +3,10 @@
         <nav id="nav">
             <ul>
                 <li v-for="item in items" v-bind:key="item.name">
-                    <a :href="item.url"
+                    <nuxt-link :to="item.url"
                        v-if="!item.children">
                         {{ item.name }}
-                    </a>
+                    </nuxt-link>
                     <span
                         v-else
                         v-on:mouseover="mouseover"
@@ -16,9 +16,9 @@
                         <ul class=" dropdown"
                            :class="{ isOpen }">
                             <li v-for="child in item.children" v-bind:key="child.name">
-                                <a :href="child.url">
+                                <nuxt-link :to="child.url">
                                     {{ child.name }}
-                                </a>
+                                </nuxt-link>
                             </li>
                         </ul>
                     </span>
@@ -85,9 +85,8 @@ header {
 #nav {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     width: 100%;
-    max-width: 1280px;
     margin: 0 auto;
 }
 
@@ -125,7 +124,7 @@ header {
 .dropdown {
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0;
     display: none;
     padding: 0;
     list-style-type: none;

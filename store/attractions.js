@@ -13,11 +13,13 @@ export const getters = {
 
 export const mutations = {
   getAll(state, attractions) {
+    state.attractions = []
     state.attractions.push({
       attractions,
     })
   },
   getOne(state, attraction) {
+    state.attraction = {}
     state.attraction = attraction
   }
 }
@@ -44,6 +46,20 @@ export const actions = {
 
   async addAttraction({commit}, attraction) {
     await axios.put('http://localhost:8000/api/attractions/', attraction)
+      .then((res) => {
+        console.log(res)
+      })
+  },
+
+  async updateAttraction({commit}, attraction) {
+    await axios.put('http://localhost:8000/api/attractions/' + attraction.id, attraction)
+      .then((res) => {
+        console.log(res)
+      })
+  },
+
+  async deleteAttraction({commit}, attractionId) {
+    await axios.delete('http://localhost:8000/api/attractions/' + attractionId)
       .then((res) => {
         console.log(res)
       })

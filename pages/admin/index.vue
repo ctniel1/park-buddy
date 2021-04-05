@@ -1,12 +1,15 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="title">
-        Park Management Page
-      </h1>
-      <div class="links">
-        <nuxt-link to='/'>Back to Home</nuxt-link>
-        <nuxt-link to='./attractions/add'>Add Attraction</nuxt-link>
+  <div class="page">
+    <Menu />
+    <div class="container">
+      <div>
+        <h1 class="title">
+          Park Management Page
+        </h1>
+        <div class="links">
+          <nuxt-link to='/'>Back to Home</nuxt-link>
+          <nuxt-link to='./admin/attractions/add'>Add Attraction</nuxt-link>
+        </div>
       </div>
     </div>
   </div>

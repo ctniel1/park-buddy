@@ -18,8 +18,10 @@
           <img class="feature-pic" :src="require('@/assets/food.jpg')" />
           <div class="img-text">Concessions</div>
         </nuxt-link>
-        <nuxt-link to='./map'>Map</nuxt-link>
-        <nuxt-link to='./admin'>Admin</nuxt-link>
+        <nuxt-link class="link" to='./map'>
+          <img class="feature-pic" :src="require('@/assets/map.jpeg')" />
+          <div class="img-text">Map</div>
+        </nuxt-link>
       </div>
     </div>
   </div>

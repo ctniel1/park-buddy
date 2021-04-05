@@ -1,15 +1,22 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="title">
-        Attraction Page <!--#{{this.$route.params.attractionId}}-->
-      </h1>
-      <p>
-        {{attractions.attraction[0]}}
-      </p>
-      <div class="links">
-        <nuxt-link to='../'>Home</nuxt-link>
-        <nuxt-link to='./edit'>Edit Attraction</nuxt-link>
+  <div class="page">
+    <Menu />
+    <div class="container">
+      <div>
+        <h1 class="title">
+          Attraction Page <!--#{{this.$route.params.attractionId}}-->
+        </h1>
+        <p>
+          {{attractions.attraction[0]}}
+        </p>
+        <div class="links">
+          <nuxt-link to='../'>Home</nuxt-link>
+          <nuxt-link to='./edit'>Edit Attraction</nuxt-link>
+        </div>
+        <div class="mainAttraction">
+          <img class="attractionImage" :src="attractions.attraction[0].imgSrc" />
+          <h1 class="attractionTitle">{{attractions.attraction[0].name}}</h1>
+        </div>
       </div>
     </div>
   </div>
@@ -30,7 +37,18 @@ export default Vue.extend({
   ]),
   data () {
     return {
-
+      attractions: {
+          attraction: [
+            {
+              id: 0,
+              name: 'Cannibal',
+              description: 'Cannibal – new for 2015 – lifts riders 208 feet and plunges them',
+              type: 'Roller Coaster',
+              minHeight: 48,
+              imgSrc: 'http://www.lagoonpark.com/wp-content/uploads/2015/02/Cannibal_HeaderFPO.jpg'
+            },
+          ]
+        }
       }
     },
   methods: {
@@ -42,42 +60,7 @@ export default Vue.extend({
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
+  .attractionImage {
+    height: 300px;
+  }
 </style>
