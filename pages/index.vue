@@ -31,8 +31,10 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-   mounted () {
+   created () {
         this.$store.dispatch('attractions/getAttractions')
+        this.$store.dispatch('queues/getQueues')
+        this.$store.dispatch('users/getUsers')
     },
 })
 </script>

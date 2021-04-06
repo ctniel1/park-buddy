@@ -20,8 +20,8 @@ router.put('/', (req, res) => {
   const id = uuidv4();
   db.getConnection(function(err, conn) {
     if (err) console.log(err);
-    conn.execute('INSERT INTO attractions (id, name, description, type, minHeight, rating, totalRatings) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [id, req.body.name, req.body.description, req.body.type, req.body.minHeight, req.body.rating, req.body.totalRatings], 
+    conn.execute('INSERT INTO attractions (id, name, description, type, minHeight, rating, totalRatings, imgSrc, imgThumb) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [id, req.body.name, req.body.description, req.body.type, req.body.minHeight, req.body.rating, req.body.totalRatings, req.body.imgSrc, req.body.imgThumb], 
       function(err, results) {
         if (err) console.log(err);
         res.send(results);
@@ -46,8 +46,8 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   db.getConnection(function(err, conn) {
     if (err) console.log(err);
-    conn.execute('UPDATE attractions SET name = ?, description = ?, type = ?, minHeight = ?, rating = ?, totalRatings = ? WHERE id = ?',
-      [req.body.name, req.body.description, req.body.type, req.body.minHeight, req.body.rating, req.body.totalRatings, req.params.id],
+    conn.execute('UPDATE attractions SET name = ?, description = ?, type = ?, minHeight = ?, rating = ?, totalRatings = ?, imgSrc = ?, imgThumb = ? WHERE id = ?',
+      [req.body.name, req.body.description, req.body.type, req.body.minHeight, req.body.rating, req.body.totalRatings, req.body.imgSrc, req.body.imgThumb, req.params.id],
       function(err, results) {
         if (err) console.log(err);
         res.send(results);

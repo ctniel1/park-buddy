@@ -1,6 +1,6 @@
 <template>
   <div class="component">
-    <img class="attractionImg" :src="attraction.imgSrc" />
+    <img class="attractionThumb" :src="attraction.imgThumb" />
     <div class="info">
       <h1 class="attractionTitle">{{ attraction.name }}</h1>
       <p class="attractionStats">{{ attraction.type }} - Min. Height: {{ attraction.minHeight}} in.</p>
@@ -32,9 +32,9 @@
     justify-content: space-between;
   }
 
-  .attractionImg {
-    max-height: 100px;
-    max-width: 150px;
+  .attractionThumb {
+    max-height: 256px;
+    max-width: 215px;
     margin: 5px;
   }
 

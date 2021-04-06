@@ -68,21 +68,15 @@ export default Vue.extend({
   methods: {
     // submit form handler
     submit: function() {
-      const attraction = {
-        name: this.name,
-        type: this.type,
-        description: this.description,
-        minHeight: this.minHeight,
-        rating: this.rating,
-        totalRatings: this.totalRatings,
+      const user = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        username: this.username,
+        password: this.password,
+        email: this.email,
+        phone: this.phone,
       }
-      this.$store.dispatch('attractions/addAttraction', attraction)
-      this.name = "Attraction Name"
-      this.type = "Attractions"
-      this.description = ""
-      this.minHeight = 0
-      this.rating = 0
-      this.totalRatings = 0
+      this.$store.dispatch('attractions/addAttraction', user)
     },
   },
 })

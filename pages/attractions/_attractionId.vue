@@ -11,10 +11,12 @@
         </p>
         <div class="links">
           <nuxt-link to='../'>Home</nuxt-link>
-          <nuxt-link to='./edit'>Edit Attraction</nuxt-link>
+          <nuxt-link :to="'/admin/attractions/edit/' + this.$route.params.attractionId">Edit Attraction</nuxt-link>
+          <nuxt-link :to="'/admin/queues/add/' + this.$route.params.attractionId">Add a Queue</nuxt-link>
         </div>
         <div class="mainAttraction">
-          <img class="attractionImage" :src="attractions.attraction[0].imgSrc" />
+          <img v-if="attractions.attraction[0].imgSrc" class="attractionImage" :src="attractions.attraction[0].imgSrc" />
+          <p v-else>No Image Found</p>
           <h1 class="attractionTitle">{{attractions.attraction[0].name}}</h1>
         </div>
       </div>
@@ -29,7 +31,7 @@ import { mapActions, mapState } from 'vuex'
 export default Vue.extend({
   name: 'app',
   
-  mounted () {
+  created () {
         this.$store.dispatch('attractions/getAttraction', this.$route.params.attractionId)
     },
   computed: mapState([
@@ -37,24 +39,11 @@ export default Vue.extend({
   ]),
   data () {
     return {
-      attractions: {
-          attraction: [
-            {
-              id: 0,
-              name: 'Cannibal',
-              description: 'Cannibal – new for 2015 – lifts riders 208 feet and plunges them',
-              type: 'Roller Coaster',
-              minHeight: 48,
-              imgSrc: 'http://www.lagoonpark.com/wp-content/uploads/2015/02/Cannibal_HeaderFPO.jpg'
-            },
-          ]
-        }
+      
       }
     },
   methods: {
-    ...mapActions({
-      loadAttractions: 'loadAttractions' // map `this.add() to `this.$store.dispatch('add')`
-    })
+
   }
 })
 </script>

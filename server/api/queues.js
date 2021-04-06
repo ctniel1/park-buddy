@@ -20,8 +20,8 @@ router.put('/', (req, res) => {
   const id = uuidv4();
   db.getConnection(function(err, conn) {
     if (err) console.log(err);
-    conn.execute('INSERT INTO queues (id, attractionId, rate, totalQueued, status) VALUES (?, ?, ?, ?, ?)',
-      [id, req.body.attractionId, req.body.rate, req.body.totalQueued, req.body.status], 
+    conn.execute('INSERT INTO queues (id, attractionId, name, rate, totalQueued, status) VALUES (?, ?, ?, ?, ?, ?)',
+      [id, req.body.attractionId, req.body.name, req.body.rate, req.body.totalQueued, req.body.status], 
       function(err, results) {
         if (err) console.log(err);
         res.send(results);
@@ -46,8 +46,8 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   db.getConnection(function(err, conn) {
     if (err) console.log(err);
-    conn.execute('UPDATE queues SET attractionId = ?, rate = ?, totalQueued = ?, status = ? WHERE id = ?',
-      [req.body.attractionId, req.body.rate, req.body.totalQueued, req.body.status, req.params.id],
+    conn.execute('UPDATE queues SET attractionId = ?, name = ?, rate = ?, totalQueued = ?, status = ? WHERE id = ?',
+      [req.body.attractionId, req.body.name, req.body.rate, req.body.totalQueued, req.body.status, req.params.id],
       function(err, results) {
         if (err) console.log(err);
         res.send(results);
