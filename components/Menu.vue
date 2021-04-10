@@ -1,8 +1,35 @@
 <template>
   <header>
         <nav id="nav">
+            <!-- {{ users.loggedInUser.firstName }} -->
+            <span v-if="users.loggedInUser">Hi {{ users.loggedInUser.firstName }}!</span>
             <ul>
-                <li v-for="item in items" v-bind:key="item.name">
+                <li>
+                    <nuxt-link to="/">Home</nuxt-link>
+                </li>
+                <li v-if="users.loggedInUser">
+                    <a v-on:click="logout">Logout</a>
+                </li>
+                <li v-else>
+                    <nuxt-link to="/login">Login</nuxt-link>
+                </li>
+                <li>
+                    <span v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
+                        Admin
+                        <ul class="dropdown" :class="{ isOpen }">
+                            <li>
+                                <nuxt-link to="/admin/attractions">Manage Attraction</nuxt-link>
+                            </li> 
+                            <li>
+                                <nuxt-link to="/admin/queues">Manage Queues</nuxt-link>
+                            </li> 
+                            <li>
+                                <nuxt-link to="/admin/users">Manage Users</nuxt-link>
+                            </li> 
+                        </ul>
+                    </span>
+                </li>
+                <!-- <li v-for="item in items" v-bind:key="item.name">
                     <nuxt-link :to="item.url"
                        v-if="!item.children">
                         {{ item.name }}
@@ -22,15 +49,23 @@
                             </li>
                         </ul>
                     </span>
-                </li>
+                </li> -->
             </ul>
         </nav>
     </header>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-    name: 'nav',
+    name: 'mainMenu',
+    created () {
+        this.$store.dispatch('users/loadUser')
+    },
+    computed: mapState([
+    'users'
+    ]),
     data() {
       return {
         isOpen: false,
@@ -71,6 +106,9 @@ export default {
         },
         mouseleave: function () {
             this.isOpen = false;
+        },
+        logout: function () {
+            this.$store.dispatch('users/logoutUser')
         }
     }
   }
@@ -103,6 +141,7 @@ header {
     padding: 20px;
     color: #fff;
     text-decoration: none;
+    cursor: pointer;
 }
 
 #nav > ul > li > span {

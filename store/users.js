@@ -2,7 +2,8 @@ import axios from 'axios'
 
 export const state = () => ({
   users: [],
-  user: {}
+  user: {},
+  loggedInUser: false,
 })
 
 export const getters = {
@@ -19,6 +20,15 @@ export const mutations = {
   },
   getOne(state, user) {
     state.user = user
+  },
+  login(state, user) {
+    state.loggedInUser = user
+  },
+  logout(state, user) {
+    state.loggedInUser = false
+  },
+  loadUser(state, user) {
+    state.loggedInUser = user
   }
 }
 
@@ -64,9 +74,16 @@ export const actions = {
   },
 
   async loginUser({commit}, user) {
-    await axios.post('http://localhost:8000/api/users/login', user)
+    await axios.put('http://localhost:8000/api/users/easyLogin', user)
       .then((res) => {
-        console.log(res)
+        if (res.data[0]) {
+          commit('login', res.data[0])
+          console.log(res.data[0])
+          window.localStorage.setItem('user', JSON.stringify(res.data[0]))
+          window.location.replace('/')
+        } else {
+          window.alert("Login failed. Try again.")
+        }
       })
   },
 
@@ -75,5 +92,12 @@ export const actions = {
       .then((res) => {
         console.log(res)
       })
+    commit('logout')
+    window.localStorage.clear();
+  },
+
+  loadUser({commit}) {
+    console.log(window.localStorage.getItem('user'))
+    commit('loadUser', JSON.parse(window.localStorage.getItem('user')))
   }
 }

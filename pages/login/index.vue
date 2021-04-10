@@ -47,7 +47,7 @@ export default Vue.extend({
         username: this.username,
         password: this.password,
       }
-      this.$store.dispatch('attractions/addAttraction', user)
+      this.$store.dispatch('users/loginUser', user)
     },
   },
 })

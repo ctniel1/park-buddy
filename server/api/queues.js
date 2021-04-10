@@ -30,7 +30,7 @@ router.put('/', (req, res) => {
   })
 });
 
-router.get('/:id', (req, res) => {
+router.get('/queue/:id', (req, res) => {
   db.getConnection(function(err, conn) {
     if (err) console.log(err);
     conn.execute('SELECT * FROM queues WHERE id = ?',
@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
   })
 });
 
-router.put('/:id', (req, res) => {
+router.put('/queue/:id', (req, res) => {
   db.getConnection(function(err, conn) {
     if (err) console.log(err);
     conn.execute('UPDATE queues SET attractionId = ?, name = ?, rate = ?, totalQueued = ?, status = ? WHERE id = ?',
@@ -56,17 +56,42 @@ router.put('/:id', (req, res) => {
   })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/queue/:id', (req, res) => {
   db.getConnection(function(err, conn) {
-    db.getConnection(function(err, conn) {
-      if (err) console.log(err);
-      conn.execute('DELETE FROM queues WHERE id = ?',
-        [req.params.id],
-        function(err, results) {
-          if (err) console.log(err);
-          res.send(results);
-      });
-      db.releaseConnection(conn);
-    })
+    if (err) console.log(err);
+    conn.execute('DELETE FROM queues WHERE id = ?',
+      [req.params.id],
+      function(err, results) {
+        if (err) console.log(err);
+        res.send(results);
+    });
+    db.releaseConnection(conn);
   })
 });
+
+router.get('/userQueues/:userId', (req, res) => {
+  db.getConnection(function(err, conn) {
+    if (err) console.log(err);
+    conn.execute('SELECT * FROM queues WHERE attractionId IN (SELECT attractionId FROM user_queues WHERE userId = ?)',
+      [req.params.userId],
+      function (err, results) {
+        if (err) console.log(err);
+        console.log(results)
+        res.send(results);
+      });
+    db.releaseConnection(conn);
+  })
+});
+
+router.put('/userQueues', (req, res) => {
+  db.getConnection(function(err, conn) {
+    if (err) console.log(err);
+    conn.execute('INSERT INTO user_queues (userId, attractionId) VALUES (?, ?)',
+      [req.body.userId, req.body.attractionId],
+      function(err, results) {
+        if (err) console.log(err);
+        res.send(results);
+      });
+    db.releaseConnection(conn);
+  })
+})

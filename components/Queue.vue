@@ -1,15 +1,11 @@
 <template>
   <div class="component">
-    <img class="attractionThumb" :src="attraction.imgThumb" />
     <div class="info">
-      <h1 class="attractionTitle">{{ attraction.name }}</h1>
-      <p class="attractionStats">{{ attraction.type }} - Min. Height: {{ attraction.minHeight}} in.</p>
+      <h1 class="attractionTitle">{{ queue.name }}</h1>
+      <p class="attractionStats">Rate: {{ queue.rate}} / hr</p>
     </div>
     <div class="actions">
       <span v-on:click="getInQueue"><button v-if="users.loggedInUser" class="queueButton">Get in Queue</button></span>
-      <span v-on:click="loadAttraction">
-        <nuxt-link :to="'attractions/' + attraction.id">See more</nuxt-link>
-      </span>
     </div>
   </div>
 </template>
@@ -18,26 +14,15 @@
   import { mapState } from 'vuex'
 
   export default {
-    name: 'Attraction',
+    name: 'Queue',
     props: {
-      attraction: Object
+      queue: Object
     },
     computed: mapState([
     'users'
     ]),
     methods: {
-      loadAttraction: function() {
-        console.log("Trying to load")
-        this.$store.dispatch('attractions/getAttraction', this.attraction.id)
-      },
-      getInQueue: function() {
-        console.log('Getting in queue')
-        const userQueue = {
-          userId: this.users.loggedInUser.id,
-          attractionId: this.attraction.id
-        }
-        this.$store.dispatch('queues/getInQueue', userQueue)
-      }
+
     }
   }
 </script>

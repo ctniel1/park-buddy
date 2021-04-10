@@ -36,7 +36,7 @@ services:
 
     # give the location for the environment file
     # env_file:
-    #   - ./.env
+      - ./.env
 
     # tell this container not to start until the mongo container starts
     depends_on:

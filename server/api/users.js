@@ -55,7 +55,6 @@ router.put('/', (req, res) => {
 });
 
 router.get('/user/:id', (req, res) => {
-  console.log('In user get')
   db.getConnection(function(err, conn) {
     if (err) console.log(err);
     conn.execute('SELECT * FROM users WHERE id = ?',
@@ -96,6 +95,28 @@ router.delete('/user/:id', (req, res) => {
     })
   })
 });
+
+router.put('/easyLogin', (req, res) => {
+  db.getConnection(function(err, conn) {
+    if (err) console.log(err);
+    conn.execute('SELECT * FROM users WHERE username = ?',
+      [req.body.username],
+      function(err, results) {
+        if (err) console.log(err);
+        if (results[0]) {
+          if (results[0].password === req.body.password) {
+            delete results[0].password;
+            res.send(results);
+          } else {
+            res.send(null)
+          }
+        } else {
+          res.send(null)
+        }
+    });
+    db.releaseConnection(conn);
+  })
+})
 
 router.get('/protected', (req, res) => {
   console.log('In protected')

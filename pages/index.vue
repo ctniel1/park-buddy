@@ -35,6 +35,7 @@ export default Vue.extend({
         this.$store.dispatch('attractions/getAttractions')
         this.$store.dispatch('queues/getQueues')
         this.$store.dispatch('users/getUsers')
+        this.$store.dispatch('queues/getUserQueues')
     },
 })
 </script>

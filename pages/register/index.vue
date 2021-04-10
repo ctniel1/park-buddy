@@ -76,7 +76,7 @@ export default Vue.extend({
         email: this.email,
         phone: this.phone,
       }
-      this.$store.dispatch('attractions/addAttraction', user)
+      this.$store.dispatch('users/addUser', user)
     },
   },
 })
