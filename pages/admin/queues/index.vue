@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <Menu />
-    <div>
-      <h1 class="title">Queue Management Page</h1>
+    <div class="container">
+      <h1 class="title-main">Queue Management Page</h1>
       <nuxt-link to="/admin/queues/add">Add New Queue</nuxt-link>
       <table>
         <thead>
@@ -19,7 +19,7 @@
             <td>{{ queue.totalQueued }}</td>
             <td>{{ queue.status ? 'Enabled' : 'Disabled' }}</td>
             <td><nuxt-link :to="'/admin/queues/edit/' + queue.id">Edit</nuxt-link></td>
-            <td><button>Delete</button></td>
+            <td><button v-on:click="deleteQueue(queue.id)">Delete</button></td>
           </tr>
         </tbody>
       </table>
@@ -47,7 +47,9 @@ export default {
       }
     },
   methods: {
-    
+    deleteQueue: function(queueId) {
+      this.$store.dispatch('queues/deleteQueue', queueId)
+    }
   }
 }
 </script>

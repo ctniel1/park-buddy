@@ -1,53 +1,56 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="title">
-        Queue Add page
-      </h1>
-      <form class="vue-form" @submit.prevent="submit">
-        <fieldset>
-          <div>
-            <label class="label" for="name">Name</label>
-            <input type="text" name="name" id="name" required="" v-model="name">
-          </div>
-          <div>
-            <label>Type</label>
-            <span class="select">
-              <select class="budget" v-model="type">
-                <option value="Attractions">Attractions</option>
-                <option value="Family">Family</option>
-                <option value="Kiddie">Kiddie</option>
-                <option value="Roller Coaster">Roller Coaster</option>
-                <option value="Thrill">Thrill</option>
-                <option value="Water">Water</option>
-                <option value="X-Venture">X-Venture</option>
-              </select>
-            </span>
-          </div>
-          <div>
-            <label class="label" for="minHeight">Min. Height</label>
-            <input type="text" name="minHeight" id="minHeight" v-model="minHeight">
-          </div>
-          <div>
-            <label class="label" for="rating">Rating</label>
-            <input type="text" name="rating" id="rating" v-model="rating">
-          </div>
-          <div>
-            <label class="label" for="totalRatings">Total Ratings</label>
-            <input type="text" name="totalRatings" id="totalRatings"  v-model="totalRatings">
-          </div>
-          <div>
-            <label class="label" for="textarea">Description</label>
-            <textarea class="message" name="textarea" id="textarea" required="" 
-                      v-model="description"></textarea>
-          </div>
-          <div>
-            <input type="submit" value="Add Attraction">
-          </div>
-        </fieldset>
-      </form>
-      <div class="links">
-        <nuxt-link to='/'>Home</nuxt-link>
+  <div class="page">
+    <Menu />
+    <div class="container">
+      <div>
+        <h1 class="title-main">
+          Queue Add page
+        </h1>
+        <form class="vue-form" @submit.prevent="submit">
+          <fieldset>
+            <div>
+              <label class="label" for="name">Name</label>
+              <input type="text" name="name" id="name" required="" v-model="name">
+            </div>
+            <div>
+              <label>Type</label>
+              <span class="select">
+                <select class="budget" v-model="type">
+                  <option value="Attractions">Attractions</option>
+                  <option value="Family">Family</option>
+                  <option value="Kiddie">Kiddie</option>
+                  <option value="Roller Coaster">Roller Coaster</option>
+                  <option value="Thrill">Thrill</option>
+                  <option value="Water">Water</option>
+                  <option value="X-Venture">X-Venture</option>
+                </select>
+              </span>
+            </div>
+            <div>
+              <label class="label" for="minHeight">Min. Height</label>
+              <input type="text" name="minHeight" id="minHeight" v-model="minHeight">
+            </div>
+            <div>
+              <label class="label" for="rating">Rating</label>
+              <input type="text" name="rating" id="rating" v-model="rating">
+            </div>
+            <div>
+              <label class="label" for="totalRatings">Total Ratings</label>
+              <input type="text" name="totalRatings" id="totalRatings"  v-model="totalRatings">
+            </div>
+            <div>
+              <label class="label" for="textarea">Description</label>
+              <textarea class="message" name="textarea" id="textarea" required="" 
+                        v-model="description"></textarea>
+            </div>
+            <div>
+              <input type="submit" value="Add Attraction">
+            </div>
+          </fieldset>
+        </form>
+        <div class="links">
+          <nuxt-link to='/'>Home</nuxt-link>
+        </div>
       </div>
     </div>
   </div>

@@ -2,10 +2,7 @@
   <div class="component">
     <div class="info">
       <h1 class="attractionTitle">{{ queue.name }}</h1>
-      <p class="attractionStats">Rate: {{ queue.rate}} / hr</p>
-    </div>
-    <div class="actions">
-      <span v-on:click="getInQueue"><button v-if="users.loggedInUser" class="queueButton">Get in Queue</button></span>
+      <p class="attractionStats">Your ride in: {{ queue.rate / 60 }} minutes</p>
     </div>
   </div>
 </template>
@@ -49,6 +46,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    text-align: center;
+    margin: auto;
   }
 
   .attractionTitle {

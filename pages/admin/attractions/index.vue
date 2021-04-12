@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <Menu />
-    <div>
-      <h1 class="title">Attraction Management Page</h1>
+    <div class="attraction-container">
+      <h1 class="title-main">Attraction Management Page</h1>
       <nuxt-link to="/admin/attractions/add">Add New Attraction</nuxt-link>
       <table>
         <thead>
@@ -21,7 +21,7 @@
             <td>{{ attraction.imgSrc }}</td>
             <td>{{ attraction.imgThumb }}</td>
             <td><nuxt-link :to="'/admin/attractions/edit/' + attraction.id">Edit</nuxt-link></td>
-            <td><button>Delete</button></td>
+            <td><button v-on:click="deleteAttraction(attraction.id)">Delete</button></td>
           </tr>
         </tbody>
       </table>
@@ -51,7 +51,16 @@ export default {
       }
     },
   methods: {
-    
+    deleteAttraction: function(attractionId) {
+      console.log(attractionId)
+      this.$store.dispatch('attractions/deleteAttraction', attractionId)
+    }
   }
 }
 </script>
+
+<style>
+  table {
+    color: #FFC347;
+  }
+</style>

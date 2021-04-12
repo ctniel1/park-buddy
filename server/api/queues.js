@@ -76,7 +76,6 @@ router.get('/userQueues/:userId', (req, res) => {
       [req.params.userId],
       function (err, results) {
         if (err) console.log(err);
-        console.log(results)
         res.send(results);
       });
     db.releaseConnection(conn);

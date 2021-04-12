@@ -68,6 +68,7 @@
 
   .attractionTitle {
     margin-bottom: 15px;
+    color:#FFC347;
   }
 
   .actions {

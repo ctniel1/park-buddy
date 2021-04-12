@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <Menu />
-    <div>
-      <h1 class="title">User Management Page</h1>
+    <div class="container">
+      <h1 class="title-main">User Management Page</h1>
       <table>
         <thead>
           <tr>
@@ -19,7 +19,7 @@
             <td>{{ user.email }}</td>
             <td>{{ user.phone }}</td>
             <td><nuxt-link :to="'/admin/users/edit/' + user.id">Edit</nuxt-link></td>
-            <td><button>Delete</button></td>
+            <td><button v-on:click="deleteUser(user.id)">Delete</button></td>
           </tr>
         </tbody>
       </table>
@@ -48,7 +48,9 @@ export default {
       }
     },
   methods: {
-    
+    deleteUser: function(userId) {
+      this.$store.dispatch('users/deleteUser', userId)
+    }
   }
 }
 </script>

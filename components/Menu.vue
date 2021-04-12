@@ -13,7 +13,7 @@
                 <li v-else>
                     <nuxt-link to="/login">Login</nuxt-link>
                 </li>
-                <li>
+                <li v-if="users.loggedInUser">
                     <span v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
                         Admin
                         <ul class="dropdown" :class="{ isOpen }">

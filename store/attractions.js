@@ -48,6 +48,9 @@ export const actions = {
     await axios.put('http://localhost:8000/api/attractions/', attraction)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('Attraction added successfully')
+        }
       })
   },
 
@@ -55,6 +58,9 @@ export const actions = {
     await axios.put('http://localhost:8000/api/attractions/' + attraction.id, attraction)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('Attraction updated successfully')
+        }
       })
   },
 
@@ -62,6 +68,9 @@ export const actions = {
     await axios.delete('http://localhost:8000/api/attractions/' + attractionId)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('Attraction deleted successfully')
+        }
       })
   }
 }

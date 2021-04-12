@@ -1,60 +1,63 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="title">
-        {{attractions.attraction[0].name}} Edit page
-      </h1>
-      <form class="vue-form" @submit.prevent="submit">
-        <fieldset>
-          <div>
-            <label class="label" for="name">Name</label>
-            <input type="text" name="name" id="name" required="" v-model="attractions.attraction[0].name">
-          </div>
-          <div>
-            <label>Type</label>
-            <span class="select">
-              <select class="budget" v-model="attractions.attraction[0].type">
-                <option value="Attractions">Attractions</option>
-                <option value="Family">Family</option>
-                <option value="Kiddie">Kiddie</option>
-                <option value="Roller Coaster">Roller Coaster</option>
-                <option value="Thrill">Thrill</option>
-                <option value="Water">Water</option>
-                <option value="X-Venture">X-Venture</option>
-              </select>
-            </span>
-          </div>
-          <div>
-            <label class="label" for="minHeight">Min. Height</label>
-            <input type="text" name="minHeight" id="minHeight" v-model="attractions.attraction[0].minHeight">
-          </div>
-          <div>
-            <label class="label" for="rating">Rating</label>
-            <input type="text" name="rating" id="rating" v-model="attractions.attraction[0].rating">
-          </div>
-          <div>
-            <label class="label" for="totalRatings">Total Ratings</label>
-            <input type="text" name="totalRatings" id="totalRatings"  v-model="attractions.attraction[0].totalRatings">
-          </div>
-          <div>
-            <label class="label" for="description">Description</label>
-            <textarea class="message" name="description" id="description" required="" v-model="attractions.attraction[0].description"></textarea>
-          </div>
-          <div>
-            <label class="label" for="imgSrc">Main Image Source</label>
-            <input type="text" name="imgSrc" id="imgSrc" v-model="attractions.attraction[0].imgSrc">
-          </div>
-          <div>
-            <label class="label" for="imgThumb">Image Thumbnail</label>
-            <input type="text" name="imgThumb" id="imgThumb" v-model="attractions.attraction[0].imgThumb">
-          </div>
-          <div>
-            <input type="submit" value="Edit Attraction">
-          </div>
-        </fieldset>
-      </form>
-      <div class="links">
-        <nuxt-link to='/'>Home</nuxt-link>
+  <div class="page">
+    <Menu />
+    <div class="container">
+      <div>
+        <h1 class="title-main">
+          Edit {{attractions.attraction[0].name}}
+        </h1>
+        <form class="vue-form" @submit.prevent="submit">
+          <fieldset>
+            <div>
+              <label class="label" for="name">Name</label>
+              <input type="text" name="name" id="name" required="" v-model="attractions.attraction[0].name">
+            </div>
+            <div>
+              <label>Type</label>
+              <span class="select">
+                <select class="budget" v-model="attractions.attraction[0].type">
+                  <option value="Attractions">Attractions</option>
+                  <option value="Family">Family</option>
+                  <option value="Kiddie">Kiddie</option>
+                  <option value="Roller Coaster">Roller Coaster</option>
+                  <option value="Thrill">Thrill</option>
+                  <option value="Water">Water</option>
+                  <option value="X-Venture">X-Venture</option>
+                </select>
+              </span>
+            </div>
+            <div>
+              <label class="label" for="minHeight">Min. Height</label>
+              <input type="text" name="minHeight" id="minHeight" v-model="attractions.attraction[0].minHeight">
+            </div>
+            <div>
+              <label class="label" for="rating">Rating</label>
+              <input type="text" name="rating" id="rating" v-model="attractions.attraction[0].rating">
+            </div>
+            <div>
+              <label class="label" for="totalRatings">Total Ratings</label>
+              <input type="text" name="totalRatings" id="totalRatings"  v-model="attractions.attraction[0].totalRatings">
+            </div>
+            <div>
+              <label class="label" for="description">Description</label>
+              <textarea class="message" name="description" id="description" required="" v-model="attractions.attraction[0].description"></textarea>
+            </div>
+            <div>
+              <label class="label" for="imgSrc">Main Image Source</label>
+              <input type="text" name="imgSrc" id="imgSrc" v-model="attractions.attraction[0].imgSrc">
+            </div>
+            <div>
+              <label class="label" for="imgThumb">Image Thumbnail</label>
+              <input type="text" name="imgThumb" id="imgThumb" v-model="attractions.attraction[0].imgThumb">
+            </div>
+            <div>
+              <input type="submit" value="Edit Attraction">
+            </div>
+          </fieldset>
+        </form>
+        <div class="links">
+          <nuxt-link :to="'/attractions/' + attractions.attraction[0].id">Back to Attraction</nuxt-link>
+        </div>
       </div>
     </div>
   </div>

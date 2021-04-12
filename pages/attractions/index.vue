@@ -3,15 +3,9 @@
     <Menu />
     <div class="attraction-container">
       <div>
-        <h1 class="title">
+        <h1 class="title-main">
           Attractions
         </h1>
-        <h3>
-          A list of all the current attractions
-        </h3>
-        <div class="links">
-          <nuxt-link to='/'>Back to Home</nuxt-link>
-        </div>
         <div v-for="ride in attractions.attractions[0].attractions" :key="ride.id">
           <Attraction class="attractionComponent" v-bind:attraction="ride" />
         </div>
@@ -35,22 +29,7 @@ export default {
   ]),
   data () {
     return {
-        // attractions: {
-        //   attractions: [
-        //     {
-        //       attractions: [
-        //         {
-        //           id: 0,
-        //           name: 'Cannibal',
-        //           description: 'Cannibal – new for 2015 – lifts riders 208 feet and plunges them',
-        //           type: 'Roller Coaster',
-        //           minHeight: 48,
-        //           imgSrc: 'http://www.lagoonpark.com/wp-content/uploads/2015/02/Cannibal_HeaderFPO.jpg'
-        //         },
-        //       ]
-        //     }
-        //   ]
-        // }
+
       }
     },
   methods: {

@@ -1,17 +1,11 @@
 <template>
   <div class="page">
     <Menu />
-    <div class="attraction-container">
+    <div class="container">
       <div>
-        <h1 class="title">
-          Queues
+        <h1 class="title-main">
+          My Queues
         </h1>
-        <h3>
-          A list of all the current queues
-        </h3>
-        <div class="links">
-          <nuxt-link to='/'>Back to Home</nuxt-link>
-        </div>
         <div v-for="queue in queues.userQueues[0].queues" :key="queue.id">
           <Queue class="attractionComponent" v-bind:queue="queue" />
         </div>

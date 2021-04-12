@@ -118,17 +118,11 @@ router.put('/easyLogin', (req, res) => {
   })
 })
 
-router.get('/protected', (req, res) => {
-  console.log('In protected')
-  if (!req.user) return res.sendStatus(401)
-  res.send('You have access.')
-})
-
 router.post('/login',
-       passport.authenticate('local'),
-       (req, res) => {
-         res.send('You are authenticated, ' + req.user.username);
-       })
+  passport.authenticate('local'),
+  (req, res) => {
+    res.send('You are authenticated, ' + req.user.username);
+})
 
 router.get('/logout', (req, res) => {
   req.logout();

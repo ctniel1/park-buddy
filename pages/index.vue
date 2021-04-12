@@ -10,7 +10,7 @@
           <img class="feature-pic" :src="require('@/assets/attraction.jpg')" />
           <div class="img-text">Attractions</div>
         </nuxt-link>
-        <nuxt-link class="link" to='./queues'>
+        <nuxt-link class="link" to='./queues' v-if="users.loggedInUser">
           <img class="feature-pic" :src="require('@/assets/queue.jpg')" />
           <div class="img-text">Queues</div>
         </nuxt-link>
@@ -29,14 +29,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 
 export default Vue.extend({
-   created () {
-        this.$store.dispatch('attractions/getAttractions')
-        this.$store.dispatch('queues/getQueues')
-        this.$store.dispatch('users/getUsers')
-        this.$store.dispatch('queues/getUserQueues')
-    },
+
+  computed: mapState([
+    'users'
+  ]),
+
+  created () {
+      this.$store.dispatch('attractions/getAttractions')
+      this.$store.dispatch('queues/getQueues')
+      this.$store.dispatch('users/getUsers')
+      this.$store.dispatch('queues/getUserQueues')
+  },
 })
 </script>
 

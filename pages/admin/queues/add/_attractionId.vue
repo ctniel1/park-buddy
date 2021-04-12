@@ -1,39 +1,42 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="title">
-        Queue Add page
-      </h1>
-      <form class="vue-form" @submit.prevent="submit">
-        <fieldset>
-          <div>
-            <label class="label" for="name">Name</label>
-            <input type="text" name="name" id="name" required="" v-model="name" placeholder="Queue Name">
-          </div>
-          <div>
-            <label class="label" for="attractionId">Attraction ID</label>
-            <input type="text" name="attractionId" id="attractionId" required="" v-model="this.$route.params.attractionId">
-          </div>
-          <div>
-            <label class="label" for="rate">Rate</label>
-            <input type="text" name="rate" id="rate" v-model="rate">
-          </div>
-          <div>
-            <label>Status</label>
-            <span>
-              <select v-model="status">
-                <option value="0">Disabled</option>
-                <option value="1">Active</option>
-              </select>
-            </span>
-          </div>
-          <div>
-            <input type="submit" value="Add Queue">
-          </div>
-        </fieldset>
-      </form>
-      <div class="links">
-        <nuxt-link to='/'>Home</nuxt-link>
+  <div class="page">
+    <Menu />
+    <div class="container">
+      <div>
+        <h1 class="title">
+          Queue Add page
+        </h1>
+        <form class="vue-form" @submit.prevent="submit">
+          <fieldset>
+            <div>
+              <label class="label" for="name">Name</label>
+              <input type="text" name="name" id="name" required="" v-model="name" placeholder="Queue Name">
+            </div>
+            <div>
+              <label class="label" for="attractionId">Attraction ID</label>
+              <input type="text" name="attractionId" id="attractionId" required="" v-model="this.$route.params.attractionId">
+            </div>
+            <div>
+              <label class="label" for="rate">Rate</label>
+              <input type="text" name="rate" id="rate" v-model="rate">
+            </div>
+            <div>
+              <label>Status</label>
+              <span>
+                <select v-model="status">
+                  <option value="0">Disabled</option>
+                  <option value="1">Active</option>
+                </select>
+              </span>
+            </div>
+            <div>
+              <input type="submit" value="Add Queue">
+            </div>
+          </fieldset>
+        </form>
+        <div class="links">
+          <nuxt-link :to="'/attractions/' + this.$route.params.attractionId">Back to Attraction</nuxt-link>
+        </div>
       </div>
     </div>
   </div>

@@ -56,6 +56,9 @@ export const actions = {
     await axios.put('http://localhost:8000/api/users/', user)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('User added successfully')
+        }
       })
   },
 
@@ -63,6 +66,9 @@ export const actions = {
     await axios.put('http://localhost:8000/api/users/user/' + user.id, user)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('User updated successfully')
+        }
       })
   },
 
@@ -70,6 +76,9 @@ export const actions = {
     await axios.delete('http://localhost:8000/api/users/user/' + userId)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('User deleted successfully')
+        }
       })
   },
 

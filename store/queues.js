@@ -55,6 +55,9 @@ export const actions = {
     await axios.put('http://localhost:8000/api/queues/', queue)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('Queue added successfully')
+        }
       })
   },
 
@@ -62,6 +65,9 @@ export const actions = {
     await axios.put('http://localhost:8000/api/queues/queue' + queue.id, queue)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('Queue updated successfully')
+        }
       })
   },
 
@@ -69,6 +75,9 @@ export const actions = {
     await axios.delete('http://localhost:8000/api/queues/queue' + queueId)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('Queue deleted successfully')
+        }
       })
   },
 
@@ -90,6 +99,9 @@ export const actions = {
     await axios.put('http://localhost:8000/api/queues/userQueues', userQueue)
       .then((res) => {
         console.log(res)
+        if (res.status === 200) {
+          window.alert('You have entered the queue')
+        }
       })
   }
 }
